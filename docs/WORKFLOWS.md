@@ -1,174 +1,170 @@
-# Antigravity Workflows
+# Google Antigravity — Workflows
 
-> Workflow playbooks to orchestrate multiple skills with less friction.
-
-## What Is a Workflow?
-
-A workflow is a guided, step-by-step execution path that combines multiple skills for one concrete outcome.
-
-- **Bundles** tell you which skills are relevant for a role.
-- **Workflows** tell you how to use those skills in sequence to complete a real objective.
-
-If bundles are your toolbox, workflows are your execution playbook.
+Real-world workflows using Antigravity's two surfaces.
 
 ---
 
-## How to Use Workflows
+## Workflow 1: Full Feature Development
 
-1. Install the repository once (`npx antigravity-awesome-skills`).
-2. Pick a workflow matching your immediate goal.
-3. Execute steps in order and invoke the listed skills in each step.
-4. Keep output artifacts at each step (plan, decisions, tests, validation evidence).
+Best used for medium-to-large features (1+ hours of work):
 
-You can combine workflows with bundles from [BUNDLES.md](BUNDLES.md) when you need broader coverage.
+```
+Phase 1: Knowledge → Phase 2: Plan → Phase 3: Build → Phase 4: Test
+```
 
----
+**Step by step:**
 
-## Workflow: Ship a SaaS MVP
+```
+1. Build Knowledge Base context:
+   /knowledge add docs/architecture.md
+   /knowledge add "Auth is JWT, never sessions"
 
-Build and ship a minimal but production-minded SaaS product.
+2. Editor View (Ctrl+K):
+   "Plan the implementation of real-time notifications"
+   → Review the plan output
 
-**Related bundles:** `Essentials`, `Full-Stack Developer`, `QA & Testing`, `DevOps & Cloud`
+3. Manager Surface → New Task:
+   "Implement the notification system as planned:
+    - WebSocket server
+    - React hooks for subscription
+    - Persistence in PostgreSQL
+    - Tests for all components"
 
-### Prerequisites
+4. While agents work, continue on other Editor tasks
 
-- Local repository and runtime configured.
-- Clear user problem and MVP scope.
-- Basic deployment target selected.
-
-### Steps
-
-1. **Plan the scope**
-   - **Goal:** Define MVP boundaries and acceptance criteria.
-   - **Skills:** [`@brainstorming`](../skills/brainstorming/), [`@concise-planning`](../skills/concise-planning/), [`@writing-plans`](../skills/writing-plans/)
-   - **Prompt example:** `Usa @concise-planning per definire milestones e criteri di accettazione del mio MVP SaaS.`
-
-2. **Build backend and API**
-   - **Goal:** Implement core entities, APIs, and auth baseline.
-   - **Skills:** [`@backend-dev-guidelines`](../skills/backend-dev-guidelines/), [`@api-patterns`](../skills/api-patterns/), [`@database-design`](../skills/database-design/)
-   - **Prompt example:** `Usa @backend-dev-guidelines per creare API e servizi del dominio billing.`
-
-3. **Build frontend**
-   - **Goal:** Ship core user flow with clear UX states.
-   - **Skills:** [`@frontend-developer`](../skills/frontend-developer/), [`@react-patterns`](../skills/react-patterns/), [`@frontend-design`](../skills/frontend-design/)
-   - **Prompt example:** `Usa @frontend-developer per implementare onboarding, empty state e dashboard iniziale.`
-
-4. **Test and validate**
-   - **Goal:** Cover critical user journeys before release.
-   - **Skills:** [`@test-driven-development`](../skills/test-driven-development/), [`@browser-automation`](../skills/browser-automation/), `@go-playwright` (optional, Go stack)
-   - **Prompt example:** `Usa @browser-automation per creare test E2E sui flussi signup e checkout.`
-   - **Go note:** Se il progetto QA e tooling sono in Go, preferisci `@go-playwright`.
-
-5. **Ship safely**
-   - **Goal:** Release with observability and rollback plan.
-   - **Skills:** [`@deployment-procedures`](../skills/deployment-procedures/), [`@observability-engineer`](../skills/observability-engineer/)
-   - **Prompt example:** `Usa @deployment-procedures per una checklist di rilascio con rollback.`
+5. Review Artifacts:
+   - code-diff.patch (review changes)
+   - test-results.txt (verify passing)
+   - screenshot-*.png (UI verification)
+```
 
 ---
 
-## Workflow: Security Audit for a Web App
+## Workflow 2: Bug Fix with Browser Recording
 
-Run a focused security review from scope definition to remediation validation.
+For visual bugs or hard-to-reproduce issues:
 
-**Related bundles:** `Security Engineer`, `Security Developer`, `Observability & Monitoring`
+```
+Manager Surface → New Task:
 
-### Prerequisites
+"There's a bug where clicking 'Submit' on mobile sometimes
+double-submits the form.
 
-- Explicit authorization for testing.
-- In-scope targets documented.
-- Logging and environment details available.
+Staging URL: https://staging.myapp.com/checkout
 
-### Steps
+1. Record a browser session reproducing the bug
+2. Find the root cause in the code
+3. Fix it
+4. Write a regression test"
+```
 
-1. **Define scope and threat model**
-   - **Goal:** Identify assets, trust boundaries, and attack paths.
-   - **Skills:** [`@ethical-hacking-methodology`](../skills/ethical-hacking-methodology/), [`@threat-modeling-expert`](../skills/threat-modeling-expert/), [`@attack-tree-construction`](../skills/attack-tree-construction/)
-   - **Prompt example:** `Usa @threat-modeling-expert per mappare asset critici e trust boundaries della mia web app.`
-
-2. **Review auth and access control**
-   - **Goal:** Detect account takeover and authorization flaws.
-   - **Skills:** [`@broken-authentication`](../skills/broken-authentication/), [`@auth-implementation-patterns`](../skills/auth-implementation-patterns/), [`@idor-testing`](../skills/idor-testing/)
-   - **Prompt example:** `Usa @idor-testing per verificare accessi non autorizzati su endpoint multitenant.`
-
-3. **Assess API and input security**
-   - **Goal:** Uncover high-impact API and injection vulnerabilities.
-   - **Skills:** [`@api-security-best-practices`](../skills/api-security-best-practices/), [`@api-fuzzing-bug-bounty`](../skills/api-fuzzing-bug-bounty/), [`@top-web-vulnerabilities`](../skills/top-web-vulnerabilities/)
-   - **Prompt example:** `Usa @api-security-best-practices per audit endpoint auth, billing e admin.`
-
-4. **Harden and verify**
-   - **Goal:** Convert findings into fixes and verify evidence of mitigation.
-   - **Skills:** [`@security-auditor`](../skills/security-auditor/), [`@sast-configuration`](../skills/sast-configuration/), [`@verification-before-completion`](../skills/verification-before-completion/)
-   - **Prompt example:** `Usa @verification-before-completion per provare che le mitigazioni sono effettive.`
+**Artifacts produced:**
+- `recording-01.mp4` — agent reproduces the bug
+- `bug-analysis.md` — root cause explanation
+- `fix.diff` — the code fix
+- `test.spec.ts` — regression test
 
 ---
 
-## Workflow: Build an AI Agent System
+## Workflow 3: Codebase Migration
 
-Design and deliver a production-grade agent with measurable reliability.
+For large refactoring (hours to days of work):
 
-**Related bundles:** `Agent Architect`, `LLM Application Developer`, `Data Engineering`
+```
+Manager Surface → New Task:
 
-### Prerequisites
+"Migrate all class components to React functional components
+with hooks. The codebase has ~50 class components in src/components/.
 
-- Narrow use case with measurable outcomes.
-- Access to model provider(s) and observability tooling.
-- Initial dataset or knowledge corpus.
+For each component:
+1. Rewrite as functional with hooks
+2. Verify behavior is identical
+3. Update tests
+4. Flag any complex state patterns for human review"
 
-### Steps
-
-1. **Define target behavior and KPIs**
-   - **Goal:** Set quality, latency, and failure thresholds.
-   - **Skills:** [`@ai-agents-architect`](../skills/ai-agents-architect/), [`@agent-evaluation`](../skills/agent-evaluation/), [`@product-manager-toolkit`](../skills/product-manager-toolkit/)
-   - **Prompt example:** `Usa @agent-evaluation per definire benchmark e criteri di successo del mio agente.`
-
-2. **Design retrieval and memory**
-   - **Goal:** Build reliable retrieval and context architecture.
-   - **Skills:** [`@llm-app-patterns`](../skills/llm-app-patterns/), [`@rag-implementation`](../skills/rag-implementation/), [`@vector-database-engineer`](../skills/vector-database-engineer/)
-   - **Prompt example:** `Usa @rag-implementation per progettare pipeline di chunking, embedding e retrieval.`
-
-3. **Implement orchestration**
-   - **Goal:** Implement deterministic orchestration and tool boundaries.
-   - **Skills:** [`@langgraph`](../skills/langgraph/), [`@mcp-builder`](../skills/mcp-builder/), [`@workflow-automation`](../skills/workflow-automation/)
-   - **Prompt example:** `Usa @langgraph per implementare il grafo agente con fallback e human-in-the-loop.`
-
-4. **Evaluate and iterate**
-   - **Goal:** Improve weak points with a structured loop.
-   - **Skills:** [`@agent-evaluation`](../skills/agent-evaluation/), [`@langfuse`](../skills/langfuse/), [`@kaizen`](../skills/kaizen/)
-   - **Prompt example:** `Usa @kaizen per prioritizzare le correzioni sulle failure modes rilevate dai test.`
+→ Agents work async across all 50 files
+→ You review Artifacts as they complete
+→ Accept diffs component by component
+```
 
 ---
 
-## Workflow: QA and Browser Automation
+## Workflow 4: Documentation Generation
 
-Create resilient browser automation with deterministic execution in CI.
+```
+Manager Surface → New Task:
 
-**Related bundles:** `QA & Testing`, `Full-Stack Developer`
+"Generate complete documentation for this codebase:
+1. API reference (from code comments + types)
+2. Architecture overview diagram (Mermaid)
+3. Getting started guide for new developers
+4. Deployment guide
 
-### Prerequisites
-
-- Test environments and stable credentials.
-- Critical user journeys identified.
-- CI pipeline available.
-
-### Steps
-
-1. **Prepare test strategy**
-   - **Goal:** Scope journeys, fixtures, and execution environments.
-   - **Skills:** [`@e2e-testing-patterns`](../skills/e2e-testing-patterns/), [`@test-driven-development`](../skills/test-driven-development/)
-   - **Prompt example:** `Usa @e2e-testing-patterns per definire suite E2E minima ma ad alto impatto.`
-
-2. **Implement browser tests**
-   - **Goal:** Build robust test coverage with stable selectors.
-   - **Skills:** [`@browser-automation`](../skills/browser-automation/), `@go-playwright` (optional, Go stack)
-   - **Prompt example:** `Usa @go-playwright per implementare browser automation in un progetto Go.`
-
-3. **Triage and harden**
-   - **Goal:** Remove flaky behavior and enforce repeatability.
-   - **Skills:** [`@systematic-debugging`](../skills/systematic-debugging/), [`@test-fixing`](../skills/test-fixing/), [`@verification-before-completion`](../skills/verification-before-completion/)
-   - **Prompt example:** `Usa @systematic-debugging per classificare e risolvere le flakiness in CI.`
+Save all as files in docs/"
+```
 
 ---
 
-## Machine-Readable Workflows
+## Workflow 5: Security Audit
 
-For tooling and automation, workflow metadata is available in [data/workflows.json](../data/workflows.json).
+```
+Manager Surface → New Task:
+
+"Perform a comprehensive security audit:
+1. Check for SQL injection vulnerabilities
+2. Check for XSS risks
+3. Review authentication/authorization logic
+4. Check for exposed secrets in code
+5. Review dependency vulnerabilities
+6. Check CORS configuration
+
+Output: security-audit-report.md with severity ratings
+and fix instructions for each issue found."
+```
+
+---
+
+## Workflow 6: Cross-Surface Development
+
+The unique Antigravity pattern — Editor and Manager work together:
+
+```
+Editor View:
+  "Add the checkout form UI components"
+  → You review and accept changes
+
+While those run, Manager Surface:
+  "Write E2E tests for the checkout flow
+   that was just implemented in Editor View"
+
+Both run simultaneously → faster delivery
+```
+
+---
+
+## Workflow 7: Research + Implement
+
+```
+Manager Surface → New Task:
+
+"I need to add full-text search to our PostgreSQL database.
+1. Research: compare PostgreSQL native FTS vs Elasticsearch vs Typesense
+2. Recommend best option for our scale (10M documents)
+3. Implement the chosen solution
+4. Write performance benchmarks
+
+Output research to search-evaluation.md, then implement."
+```
+
+---
+
+## Quick Reference
+
+| Task Type | Use Surface | Expected Time |
+|-----------|-------------|---------------|
+| Quick edit, fix typo | Editor View | Seconds |
+| Add a small function | Editor View | Minutes |
+| Build a feature | Manager Surface | 15-60 min |
+| Large refactor | Manager Surface | Hours |
+| Full audit | Manager Surface | Hours |
+| Cross-surface | Both | Variable |

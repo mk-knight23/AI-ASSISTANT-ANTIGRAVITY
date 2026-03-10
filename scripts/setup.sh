@@ -1,42 +1,92 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# =============================================================================
 # Google Antigravity Setup Script
+# Prepares your project for use with Google Antigravity
 # Run: chmod +x setup.sh && ./setup.sh
+# =============================================================================
 
-set -e
-echo "🚀 Setting up Google Antigravity IDE..."
+set -euo pipefail
 
-echo "📦 Antigravity IDE is available at: https://antigravity.google"
-echo "   It's free for individual developers — sign in with your Google account."
+BLUE='\033[0;34m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
+log()  { echo -e "${BLUE}[antigravity-setup]${NC} $*"; }
+ok()   { echo -e "${GREEN}[✓]${NC} $*"; }
+warn() { echo -e "${YELLOW}[!]${NC} $*"; }
+
+log "Google Antigravity Project Setup"
+echo ""
+echo "Antigravity is a web/desktop app: https://antigravity.google"
+echo "No installation script needed — but we'll prep your project!"
 echo ""
 
-# Install skills for Antigravity (uses same skill format as Claude Code)
-echo "🎯 Installing Antigravity Awesome Skills..."
-npx antigravity-awesome-skills
+# Create Knowledge Base context file
+if [[ ! -f .antigravity-context.md ]]; then
+  cat > .antigravity-context.md << 'EOF'
+# Project Context for Antigravity Knowledge Base
 
-# Verify skills location
-SKILLS_DIR="${HOME}/.agent/skills"
-if [ -d "$SKILLS_DIR" ]; then
-  echo "✅ Skills installed at: $SKILLS_DIR"
-  echo "   Total skills: $(find $SKILLS_DIR -name '*.md' | wc -l | tr -d ' ')"
+## Project Overview
+<!-- Describe what this project does -->
+
+## Tech Stack
+<!-- Languages, frameworks, databases, services used -->
+
+## Architecture Decisions
+<!-- Key decisions: why we chose X over Y -->
+
+## Important Constraints
+<!-- Things agents must know: auth flow, DB schema limits, etc. -->
+
+## Current Focus
+<!-- What we're actively building right now -->
+
+## Coding Standards
+<!-- Project-specific conventions and rules -->
+EOF
+  ok "Created .antigravity-context.md (fill this in!)"
 else
-  echo "⚠️  Skills directory not found. Trying alternate path..."
-  SKILLS_DIR="${HOME}/.antigravity/skills"
+  ok ".antigravity-context.md already exists"
+fi
+
+# Remind to add to Knowledge Base
+echo ""
+warn "IMPORTANT: After opening project in Antigravity, build Knowledge Base:"
+echo ""
+echo "  /knowledge add .antigravity-context.md"
+
+if [[ -f README.md ]]; then
+  echo "  /knowledge add README.md"
+fi
+
+if [[ -d docs ]]; then
+  echo "  /knowledge add docs/"
 fi
 
 echo ""
-echo "✨ Antigravity is ready!"
+
+# Model guide
+cat > .antigravity-models.md << 'EOF'
+# Model Selection Guide for Antigravity
+
+| Task | Model | Reason |
+|------|-------|--------|
+| Tab completion, quick edits | Gemini 3 Flash | Low latency |
+| Complex refactoring | Gemini 3 Pro | Deep reasoning |
+| Code quality review | Claude Sonnet 4.5 | Best code review |
+| Architecture planning | Gemini 3 Pro | Broad knowledge |
+| Bug investigation | Claude Sonnet 4.5 | Systematic analysis |
+
+## Rule of thumb:
+- Editor View (real-time) → Gemini 3 Flash
+- Manager Surface (async) → Gemini 3 Pro or Claude Sonnet 4.5
+EOF
+ok "Created .antigravity-models.md"
+
 echo ""
-echo "Quick Start:"
-echo "  1. Open https://antigravity.google"
-echo "  2. Editor View: Tab autocomplete (like Cursor/Copilot)"
-echo "  3. Manager Surface: Multi-agent async tasks"
-echo "     - Create a task like: 'Refactor this entire authentication module'"
-echo "     - Antigravity spawns parallel agents automatically"
-echo "  4. Invoke skills in chat: '@skill-name' or /skill-name"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}  Setup Complete!${NC}"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo "Key Concepts:"
-echo "  - Editor View = synchronous pair programming"
-echo "  - Manager Surface = async multi-agent orchestration"
-echo "  - Artifacts = task lists, screenshots, browser recordings"
-echo "  - Knowledge Base = custom project context"
-echo "  - Models: Gemini 3 Pro, Gemini 3 Flash, Claude Sonnet 4.5"
+echo "1. Fill in .antigravity-context.md"
+echo "2. Open project in Antigravity: https://antigravity.google"
+echo "3. Add context to Knowledge Base (commands above)"
+echo "4. Editor View (Ctrl+K) for quick edits"
+echo "5. Manager Surface for tasks >5 minutes"

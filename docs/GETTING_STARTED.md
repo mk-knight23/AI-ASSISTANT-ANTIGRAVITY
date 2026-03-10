@@ -1,136 +1,136 @@
-# Getting Started with Antigravity Awesome Skills (V4)
+# Getting Started with Google Antigravity
 
-**New here? This guide will help you supercharge your AI Agent in 5 minutes.**
+## What is Antigravity?
 
----
-
-## 🤔 What Are "Skills"?
-
-AI Agents (like **Claude Code**, **Gemini**, **Cursor**) are smart, but they lack specific knowledge about your tools.
-**Skills** are specialized instruction manuals (markdown files) that teach your AI how to perform specific tasks perfectly, every time.
-
-**Analogy:** Your AI is a brilliant intern. **Skills** are the SOPs (Standard Operating Procedures) that make them a Senior Engineer.
+Google Antigravity (antigravity.google) is Google's agentic IDE — a full development environment where AI works alongside you. Launched November 2025. **Free for individual developers.**
 
 ---
 
-## ⚡️ Quick Start: The "Starter Packs"
-
-Don't panic about the 700+ skills. You don't need them all at once.
-We have curated **Starter Packs** to get you running immediately.
-
-You **install the full repo once** (npx or clone); Starter Packs are curated lists to help you **pick which skills to use** by role (e.g. Web Wizard, Hacker Pack)—they are not a different way to install.
-
-### 1. Install the Repo
-
-**Option A — npx (easiest):**
+## Setup
 
 ```bash
-npx antigravity-awesome-skills
+# Option 1: Web app (no install needed)
+# Visit: https://antigravity.google
+# Sign in with Google account
+
+# Option 2: Desktop app
+# Download from: https://antigravity.google/download
 ```
 
-This clones to `~/.agent/skills` by default. Use `--cursor`, `--claude`, `--gemini`, or `--codex` to install for a specific tool, or `--path <dir>` for a custom location. Run `npx antigravity-awesome-skills --help` for details.
+---
 
-If you see a 404 error, use: `npx github:sickn33/antigravity-awesome-skills`
+## First Steps
 
-**Option B — git clone:**
-
-```bash
-# Universal (works for most agents)
-git clone https://github.com/sickn33/antigravity-awesome-skills.git .agent/skills
+### 1. Open a Project
+```
+New Project → Choose template or empty
+Import → Connect GitHub repo
+Open → Existing folder (Desktop app)
 ```
 
-### 2. Pick Your Persona
+### 2. Build Your Knowledge Base (do this first!)
 
-Find the bundle that matches your role (see [BUNDLES.md](BUNDLES.md)):
+```
+/knowledge add README.md
+/knowledge add docs/architecture.md
+/knowledge add "We use PostgreSQL with Prisma ORM"
+/knowledge add https://docs.your-api.com
+```
 
-| Persona               | Bundle Name    | What's Inside?                                    |
-| :-------------------- | :------------- | :------------------------------------------------ |
-| **Web Developer**     | `Web Wizard`   | React Patterns, Tailwind mastery, Frontend Design |
-| **Security Engineer** | `Hacker Pack`  | OWASP, Metasploit, Pentest Methodology            |
-| **Manager / PM**      | `Product Pack` | Brainstorming, Planning, SEO, Strategy            |
-| **Everything**        | `Essentials`   | Clean Code, Planning, Validation (The Basics)     |
+### 3. Choose Your Working Mode
 
----
-
-## 🧭 Bundles vs Workflows
-
-Bundles and workflows solve different problems:
-
-- **Bundles** = curated sets by role (what to pick).
-- **Workflows** = step-by-step playbooks (how to execute).
-
-Start with bundles in [BUNDLES.md](BUNDLES.md), then run a workflow from [WORKFLOWS.md](WORKFLOWS.md) when you need guided execution.
-
-Example:
-
-> "Use **@antigravity-workflows** and run `ship-saas-mvp` for my project idea."
+- **Editor View** — Real-time coding (like VS Code with AI)
+- **Manager Surface** — Long async tasks, run in background
 
 ---
 
-## 🚀 How to Use a Skill
+## Editor View
 
-Once installed, just talk to your AI naturally.
+The synchronous, real-time coding surface:
 
-### Example 1: Planning a Feature (**Essentials**)
+| Shortcut | Action |
+|----------|--------|
+| `Tab` | Accept autocomplete |
+| `Ctrl+K` | Inline edit selected code |
+| `Ctrl+Enter` | Send chat message |
+| `Alt+\` | Toggle AI suggestions |
 
-> "Use **@brainstorming** to help me design a new login flow."
-
-**What happens:** The AI loads the brainstorming skill, asks you structured questions, and produces a professional spec.
-
-### Example 2: Checking Your Code (**Web Wizard**)
-
-> "Run **@lint-and-validate** on this file and fix errors."
-
-**What happens:** The AI follows strict linting rules defined in the skill to clean your code.
-
-### Example 3: Security Audit (**Hacker Pack**)
-
-> "Use **@api-security-best-practices** to review my API endpoints."
-
-**What happens:** The AI audits your code against OWASP standards.
+**First task:**
+```
+Select code → Ctrl+K → "Add TypeScript types to this function"
+```
 
 ---
 
-## 🔌 Supported Tools
+## Manager Surface
 
-| Tool            | Status          | Path              |
-| :-------------- | :-------------- | :---------------- |
-| **Claude Code** | ✅ Full Support | `.claude/skills/` |
-| **Gemini CLI**  | ✅ Full Support | `.gemini/skills/` |
-| **Codex CLI**   | ✅ Full Support | `.codex/skills/`  |
-| **Antigravity** | ✅ Native       | `.agent/skills/`  |
-| **Cursor**      | ✅ Native       | `.cursor/skills/` |
-| **Copilot**     | ⚠️ Text Only    | Manual copy-paste |
+For tasks over 5 minutes, use Manager Surface:
 
----
-
-## 🛡️ Trust & Safety (New in V4)
-
-We classify skills so you know what you're running:
-
-- 🟣 **Official**: Maintained by Anthropic/Google/Vendors (High Trust).
-- 🔵 **Safe**: Community skills that are non-destructive (Read-only/Planning).
-- 🔴 **Risk**: Skills that modify systems or perform security tests (Authorized Use Only).
-
-_Check the [Skill Catalog](../CATALOG.md) for the full list._
+```
+1. Click "New Task"
+2. Describe the full task:
+   "Refactor auth module:
+    - Extract to separate service
+    - Add refresh token support
+    - Write comprehensive tests
+    - Update docs"
+3. Press Enter — agents start working
+4. Do other work
+5. Come back to review Artifacts
+```
 
 ---
 
-## ❓ FAQ
+## Model Selection
 
-**Q: Do I need to install all 700+ skills?**
-A: You clone the whole repo once; your AI only _reads_ the skills you invoke (or that are relevant), so it stays lightweight. **Starter Packs** in [BUNDLES.md](BUNDLES.md) are curated lists to help you discover the right skills for your role—they don't change how you install.
-
-**Q: Can I make my own skills?**
-A: Yes! Use the **@skill-creator** skill to build your own.
-
-**Q: Is this free?**
-A: Yes, MIT License. Open Source forever.
+| Scenario | Model |
+|----------|-------|
+| Fast edits, UI | Gemini 3 Flash |
+| Complex refactoring | Gemini 3 Pro |
+| Code quality review | Claude Sonnet 4.5 |
+| Research | Gemini 3 Pro |
 
 ---
 
-## ⏭️ Next Steps
+## Understanding Artifacts
 
-1. [Browse the Bundles](BUNDLES.md)
-2. [See Real-World Examples](EXAMPLES.md)
-3. [Contribute a Skill](../CONTRIBUTING.md)
+Everything agents produce is tracked as an Artifact:
+
+```
+Task: "Implement OAuth2"
+Artifacts:
+├── Plan.md (task breakdown)
+├── code-diff.patch (changes made)
+├── test-results.txt (test output)
+└── screenshot-01.png (UI captures)
+```
+
+Review at: Manager Surface → [Task Name] → Artifacts tab
+
+---
+
+## Common Workflows
+
+### Build a feature:
+```
+1. Add context to Knowledge Base
+2. Editor View → Ctrl+K → describe feature
+3. Review changes
+4. Manager Surface → "Write tests for the feature I just built"
+```
+
+### Debug production issue:
+```
+1. Manager Surface → New Task
+2. Paste stack trace
+3. Agent reproduces bug (BrowserRecording artifact)
+4. Agent creates fix diff (review and apply)
+```
+
+---
+
+## Next Steps
+
+- Read [FEATURES.md](FEATURES.md) — deep dive on all features
+- Read [WORKFLOWS.md](WORKFLOWS.md) — real workflows
+- Try Manager Surface for one long task
