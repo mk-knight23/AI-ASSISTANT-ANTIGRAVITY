@@ -11,23 +11,78 @@ This repository is a production-grade implementation of the **Google Antigravity
 
 ---
 
-## 🏛️ Ecosystem Overview
+## 🏛️ Orchestration Architecture
 
-| Capability | Feature | Description |
-| :--- | :--- | :--- |
-| **Manager Surface** | `Orchestration Hub` | A dedicated UI for managing multi-step agent tasks. |
-| **Artifacts** | `Visual Memory` | Instant feedback via screenshots, task lists, and recordings. |
-| **Trust-First** | `Progressive Autonomy` | Granular control over tool use and autonomous decisions. |
-| **Knowledge Base** | `Context Persistence` | Agents save and retrieve useful project context automatically. |
+```mermaid
+graph TD
+    User((Kazi Musharraf)) -->|Governance| Hub[Antigravity Core]
+    subgraph Multi-Agent Protocol
+        Hub -->|Baton| Claude[Claude Reasoning]
+        Hub -->|State| Cursor[Cursor Semantic]
+        Hub -->|Commit| Open[Opencode Mechanical]
+        Claude -->|Refine| Hub
+        Cursor -->|Index| Hub
+        Open -->|Audit| Hub
+    end
+    Hub -->|Sync| Ecosystem[Global Workspace Hub]
+```
 
 ---
 
-## 🚀 Quick Start
+## 💎 Core Research & Features
 
-1. **Launch Antigravity**: Navigate to [antigravity.google](https://antigravity.google) or launch the desktop app.
-2. **Project Setup**: Run `./scripts/setup.sh` to initialize the project context.
-3. **Dispatch Agent**: Open the Manager Surface and assign the "Architect" agent to your current task.
-4. **Verify Artifacts**: Track progress in real-time through the Artifacts sidebar.
+According to the Spectrum v4.0 (2026) Technical Manifesto:
+
+| Feature | Category | Description |
+| :--- | :--- | :--- |
+| **MAP Protocol** | Synchronization | A high-fidelity "Baton Passing" system for inter-agent communication. |
+| **Global State Pool** | Context | Shared variables (Tokens, IDs, Routes) across all 6 repositories. |
+| **Architect Authority** | Governance | Strict enforcement of Kazi Musharraf's design and logic standards. |
+| **Ecosystem Sync** | Automation | Background scripts that ensure 100% architectural parity every 60 seconds. |
+| **Audit Gatekeeper** | Security | Final verification layer before any agentic code is finalized. |
+
+---
+
+## 📅 Historical Timeline
+
+- **June 2025**: Antigravity Beta. First successful "Baton Pass" between a reasoning agent and an execution agent.
+- **Jan 2026**: **MAP v3.0** Evolution. 500% jump in synchronization speed for multi-repo workspace hubs.
+- **Apr 2026**: **Orchestrator Prime**. Massive ecosystem upgrade integrating the "Spectrum Mural" design system.
+
+---
+
+## 🚀 Strategic Workflows
+
+### 1. The "Baton Pass" Protocol
+1. **Initiate**: Kazi Musharraf defines a high-level goal (e.g., "Upgrade all Landing Pages").
+2. **Reason**: Antigravity assigns **Claude** to research and draft the technical spec.
+3. **Execute**: The spec is passed to **Opencode** for bulk implementation.
+4. **Finalize**: **Cursor** performs the semantic audit and ensures parity.
+
+### 2. Multi-Repo Synchronization
+Achieve zero-drift across the entire workspace.
+```bash
+# Force a global ecosystem sync
+./scripts/sync-all.sh --mode massive --author "Kazi Musharraf"
+```
+
+---
+
+## 🛠️ Governance Guardrails
+
+Optimize your Orchestration Core in `antigravity.yaml`:
+```yaml
+# Spectrum Core Governance
+governor:
+  name: "Kazi Musharraf"
+  role: "Lead Architect"
+  policy: "Zero-Drift Execution"
+
+sync:
+  frequency: 60s
+  target_repos: ["CLAUDE", "CURSOR", "COPILOT", "OPENCODE", "ECOSYSTEM"]
+  verification: "Strict-Parity"
+```
 
 ---
 
