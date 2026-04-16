@@ -1,337 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Google Antigravity — The next-gen agentic IDE. Editor View + Manager Surface, Artifacts, cross-surface agents. Launched Nov 2025." />
-  <title>Google Antigravity — AI Assistant Showcase</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANTIGRAVITY | Kazi Musharraf</title>
+  <meta name="description" content="AI-Native Command Surface by Kazi Musharraf. High-performance agentic coding with browser-in-the-loop automation.">
+  
+  <!-- UI UX Pro Max: Font & Style CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              black: '#020617',
+              surface: '#0F172A',
+              neon: '#22D3EE',
+              glow: '#818CF8',
+              accent: '#C084FC',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root{--bg:#020617;--surface:#0F172A;--surface-2:#1E293B;--surface-3:#334155;--border:rgba(148,163,184,.1);--text:#F8FAFC;--muted:#94A3B8;--dim:#64748B;--accent:#4285F4;--accent-glow:rgba(66,133,244,.12);--green:#22C55E;--font-h:'Space Grotesk',sans-serif;--font-b:'DM Sans',sans-serif;--font-m:'JetBrains Mono',monospace;--r:12px;--r-sm:8px;--t:200ms cubic-bezier(.4,0,.2,1)}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.65;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
-    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--surface)}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
-    :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-    @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
-
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(2,6,23,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-    .nav-back{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;transition:color var(--t)}
-    .nav-back:hover{color:var(--text)}
-    .nav-brand{font-family:var(--font-h);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
-    .brand-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent);animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
-    .nav-badge{padding:4px 12px;background:var(--accent-glow);border:1px solid rgba(66,133,244,.3);border-radius:100px;font-size:12px;font-weight:600;color:var(--accent)}
-
-    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
-    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent)}
-    .hero-glow{position:absolute;width:700px;height:500px;top:50%;left:50%;transform:translate(-50%,-65%);background:radial-gradient(ellipse,rgba(66,133,244,.08) 0%,transparent 70%);pointer-events:none}
-    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--accent-glow);border:1px solid rgba(66,133,244,.3);border-radius:100px;font-size:13px;font-weight:500;color:var(--accent);margin-bottom:28px;position:relative;z-index:1}
-    .hero-title{font-family:var(--font-h);font-size:clamp(36px,6vw,80px);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;position:relative;z-index:1}
-    .title-grad{background:linear-gradient(135deg,var(--accent),#93C5FD,#06B6D4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-desc{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:600px;margin:0 auto 40px;position:relative;z-index:1}
-    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
-    .btn-p{padding:13px 26px;background:var(--accent);color:#fff;border-radius:var(--r-sm);font-weight:700;font-size:14px;transition:all var(--t);display:inline-flex;align-items:center;gap:8px}
-    .btn-p:hover{background:#2563EB;transform:translateY(-2px);box-shadow:0 8px 28px rgba(66,133,244,.3)}
-    .btn-s{padding:13px 26px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--r-sm);font-weight:600;font-size:14px;transition:all var(--t);display:inline-flex;align-items:center;gap:8px}
-    .btn-s:hover{border-color:rgba(66,133,244,.4);background:var(--surface-2);transform:translateY(-1px)}
-
-    .stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);background:var(--border)}
-    .stat{background:var(--surface);padding:24px;text-align:center}
-    .stat-v{font-family:var(--font-h);font-size:26px;font-weight:700;color:var(--accent);display:block;margin-bottom:4px}
-    .stat-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-
-    .s{padding:80px 0}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
-    .s-head{text-align:center;margin-bottom:52px}
-    .eyebrow{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
-    .s-title{font-family:var(--font-h);font-size:clamp(26px,4vw,42px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
-    .s-desc{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto}
-
-    /* TWO PANE */
-    .two-pane{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    @media(max-width:768px){.two-pane{grid-template-columns:1fr}.stats-row{grid-template-columns:repeat(2,1fr)}.hero-btns{flex-direction:column;align-items:center}}
-    .pane{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:32px;transition:all var(--t)}
-    .pane:hover{border-color:rgba(66,133,244,.3)}
-    .pane-icon{width:48px;height:48px;background:var(--accent-glow);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-    .pane-icon svg{width:24px;height:24px;stroke:var(--accent)}
-    .pane-title{font-family:var(--font-h);font-size:22px;font-weight:700;margin-bottom:12px}
-    .pane-subtitle{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-    .pane-desc{font-size:14px;color:var(--muted);margin-bottom:16px}
-    .pane-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-    .pane-list li{font-size:14px;color:var(--muted);display:flex;align-items:flex-start;gap:8px}
-    .pane-list li::before{content:'→';color:var(--accent);font-family:var(--font-m);flex-shrink:0;margin-top:1px}
-
-    .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-    .feat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all var(--t)}
-    .feat-card:hover{border-color:rgba(66,133,244,.3);transform:translateY(-2px)}
-    .feat-icon{width:44px;height:44px;background:var(--accent-glow);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-    .feat-icon svg{width:22px;height:22px;stroke:var(--accent)}
-    .feat-title{font-family:var(--font-h);font-size:17px;font-weight:600;margin-bottom:8px}
-    .feat-desc{font-size:14px;color:var(--muted)}
-
-    /* ARTIFACT */
-    .artifact-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-    .artifact-header{padding:16px 20px;background:var(--surface-2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-    .artifact-type{padding:3px 10px;background:var(--accent-glow);border:1px solid rgba(66,133,244,.3);border-radius:100px;font-size:11px;font-weight:600;color:var(--accent)}
-    .artifact-title{font-size:14px;font-weight:600}
-    .artifact-body{padding:20px}
-    .artifact-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-    .artifact-item:last-child{border-bottom:none}
-    .check-box{width:16px;height:16px;border-radius:3px;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .check-box svg{width:10px;height:10px;stroke:#000}
-    .pending-box{width:16px;height:16px;border-radius:3px;border:1px solid var(--surface-3);flex-shrink:0}
-
-    .models-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;transition:all var(--t)}
-    .model-card:hover{border-color:rgba(66,133,244,.3)}
-    .model-name{font-family:var(--font-h);font-size:15px;font-weight:600;margin-bottom:4px}
-    .model-maker{font-size:12px;color:var(--muted);margin-bottom:12px}
-    .model-tags{display:flex;flex-wrap:wrap;gap:6px}
-    .model-tag{padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600;border:1px solid rgba(66,133,244,.3);color:var(--accent)}
-
-    footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 24px;text-align:center}
-    .foot-brand{font-family:var(--font-h);font-size:18px;font-weight:700;margin-bottom:8px}
-    .foot-desc{color:var(--muted);font-size:14px;margin-bottom:16px}
-    .foot-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
-    .foot-links a{font-size:13px;color:var(--muted);transition:color var(--t)}
-    .foot-links a:hover{color:var(--accent)}
-    .foot-copy{font-size:12px;color:var(--dim)}
-    .scroll-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),#93C5FD);z-index:200;width:0}
-    .fade{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
-    .fade.in{opacity:1;transform:none}
+    .glass {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .neo-glow {
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
+    }
+    .neon-text {
+      text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+    }
+    .mesh-gradient {
+      background: radial-gradient(at 0% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 0%, rgba(192, 132, 252, 0.15) 0px, transparent 50%),
+                  radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.1) 0px, transparent 50%);
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
-<body>
-  <div class="scroll-bar" id="sb"></div>
-  <nav class="nav">
-    <a href="https://ai-coding-portfolio.vercel.app" class="nav-back">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      All Tools
-    </a>
-    <div class="nav-brand"><div class="brand-dot"></div>Google Antigravity</div>
-    <span class="nav-badge">by Google</span>
+
+<body class="bg-brand-black text-slate-200 font-sans selection:bg-brand-neon selection:text-black">
+
+  <!-- ─── BACKGROUND ─── -->
+  <div class="fixed inset-0 -z-10 mesh-gradient"></div>
+
+  <!-- ─── HEADER ─── -->
+  <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 transition-all duration-300">
+    <div class="glass px-6 py-4 rounded-3xl flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-neon to-brand-accent flex items-center justify-center neo-glow">
+          <i data-lucide="zap" class="text-brand-black w-6 h-6"></i>
+        </div>
+        <span class="font-heading font-bold text-xl tracking-tight hidden sm:block">ANTIGRAVITY</span>
+      </div>
+      
+      <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
+        <a href="#features" class="hover:text-brand-neon transition-colors">Features</a>
+        <a href="#workflows" class="hover:text-brand-neon transition-colors">Workflows</a>
+        <a href="#setup" class="hover:text-brand-neon transition-colors">Setup</a>
+        <div class="w-[1px] h-4 bg-white/10 mx-2"></div>
+        <span class="text-brand-neon/80 font-mono text-[10px] tracking-widest border border-brand-neon/30 px-2 py-1 rounded">V2.0 ALPHA</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="text-[11px] font-heading font-medium tracking-[0.2em] text-slate-500 uppercase hidden lg:block">By Kazi Musharraf</span>
+        <button class="bg-brand-neon text-brand-black px-5 py-2 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(34,211,238,0.4)]">
+          Deploy Agent
+        </button>
+      </div>
+    </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-tag">Launched Nov 2025 · Free for Individuals · Agent-First IDE</div>
-    <h1 class="hero-title">
-      <span style="display:block">Google Antigravity</span>
-      <span class="title-grad">The Agentic</span>
-      <span style="display:block">Development Platform</span>
-    </h1>
-    <p class="hero-desc">Editor View meets Manager Surface. Spawn multiple agents that plan, execute, and verify complex tasks across editor, terminal, and browser — simultaneously, asynchronously, with Artifacts you can trust.</p>
-    <div class="hero-btns">
-      <a href="https://antigravity.google" class="btn-p" target="_blank" rel="noopener noreferrer">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-        Visit Antigravity
-      </a>
-      <a href="./README.md" class="btn-s">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        View README
-      </a>
-    </div>
-  </section>
-
-  <div class="stats">
-    <div class="stats-row">
-      <div class="stat"><span class="stat-v">Nov '25</span><span class="stat-l">Launched</span></div>
-      <div class="stat"><span class="stat-v">3</span><span class="stat-l">AI Models</span></div>
-      <div class="stat"><span class="stat-v">Free</span><span class="stat-l">For Individuals</span></div>
-      <div class="stat"><span class="stat-v">3</span><span class="stat-l">Surfaces (Editor+Term+Browser)</span></div>
-    </div>
-  </div>
-
-  <!-- TWO SURFACES -->
-  <section class="s">
-    <div class="container">
-      <div class="s-head fade">
-        <div class="eyebrow">Core Architecture</div>
-        <h2 class="s-title">Two Surfaces, One Platform</h2>
-        <p class="s-desc">Antigravity's fundamental innovation: separate spaces for hands-on coding and autonomous agent work.</p>
+  <!-- ─── HERO ─── -->
+  <header class="pt-44 pb-20 px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-pulse-slow">
+        <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
+        <span class="text-xs font-mono font-medium tracking-wider text-brand-neon">LIFTOFF ACHIEVED | AGENTIC RAG 2026</span>
       </div>
-      <div class="two-pane fade">
-        <div class="pane">
-          <div class="pane-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M9 9h6M9 12h4"/></svg></div>
-          <div class="pane-subtitle">Synchronous Workflow</div>
-          <div class="pane-title">Editor View</div>
-          <p class="pane-desc">The traditional, hands-on coding interface you already know — but supercharged with AI at every keystroke.</p>
-          <ul class="pane-list">
-            <li>Tab autocomplete — state-of-the-art inline suggestions</li>
-            <li>Natural language code commands</li>
-            <li>Context-aware, configurable agent</li>
-            <li>Inline code explanations and refactoring</li>
-            <li>Works like VS Code — all extensions compatible</li>
-          </ul>
+      
+      <h1 class="text-6xl md:text-8xl font-heading font-bold mb-6 tracking-tighter text-white">
+        Experience <br> <span class="bg-gradient-to-r from-brand-neon via-brand-glow to-brand-accent bg-clip-text text-transparent italic">Liftoff.</span>
+      </h1>
+      
+      <p class="max-w-2xl text-slate-400 text-lg md:text-xl font-light mb-12 leading-relaxed">
+        The terminal is now an autonomous software factory. Built by <span class="text-white font-medium">Kazi Musharraf</span>, Antigravity orchestrates parallel agents across the terminal, editor, and browser.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        <a href="#setup" class="bg-white text-brand-black px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all">
+          Get Started
+        </a>
+        <a href="https://github.com/mk-knight23/AI-ASSISTANT-ANTIGRAVITY" target="_blank" class="glass px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3 hover:bg-white/10 transition-all border border-white/5">
+          <i data-lucide="github" class="w-5 h-5"></i> GitHub Repo
+        </a>
+      </div>
+
+      <div class="mt-20 w-full max-w-6xl glass rounded-3xl p-4 md:p-8 animate-float relative">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-neon/20 blur-[80px]"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent/20 blur-[80px]"></div>
+        
+        <div class="flex items-center gap-2 mb-6 border-b border-white/5 pb-4">
+          <div class="flex gap-1.5">
+            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+          </div>
+          <span class="text-xs font-mono text-slate-500 ml-4 italic">manager-surface.sh — agent-loop</span>
         </div>
-        <div class="pane">
-          <div class="pane-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-          <div class="pane-subtitle">Asynchronous Workflow</div>
-          <div class="pane-title">Manager Surface</div>
-          <p class="pane-desc">The real differentiator — a dedicated interface for orchestrating multiple agents working asynchronously across workspaces.</p>
-          <ul class="pane-list">
-            <li>Spawn multiple agents simultaneously</li>
-            <li>Observe progress via Artifacts (not raw logs)</li>
-            <li>Comment on artifacts like a Google Doc</li>
-            <li>Agent learns from your project knowledge base</li>
-            <li>Mission control for all running tasks</li>
-          </ul>
+        
+        <div class="text-left font-mono text-sm space-y-3">
+          <p class="text-slate-500">[14:32:01] <span class="text-brand-neon">Orchestrator:</span> Initiating multi-surface task...</p>
+          <p class="text-slate-400">→ Terminal: Starting `npm run dev` at localhost:3000</p>
+          <p class="text-slate-400">→ Browser: Navigating to page 'Dashboard'</p>
+          <p class="text-slate-400">→ Editor: Inserting new component 'AuthGate.tsx'</p>
+          <p class="text-white font-bold animate-pulse">▐ Agent is thinking...</p>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- ARTIFACTS -->
-  <section class="s" style="background:var(--surface);padding:60px 0">
-    <div class="container">
-      <div class="s-head fade">
-        <div class="eyebrow">The Artifacts System</div>
-        <h2 class="s-title">Verify at a Glance, Not a Scroll</h2>
-        <p class="s-desc">Instead of scrolling through raw tool calls, agents generate tangible deliverables you can inspect and annotate.</p>
-      </div>
-      <div class="two-pane fade">
-        <div class="artifact-card">
-          <div class="artifact-header">
-            <span class="artifact-type">Task List</span>
-            <span class="artifact-title">Add Share Button Feature</span>
-          </div>
-          <div class="artifact-body">
-            <div class="artifact-item">
-              <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
-              Analyze existing hero component structure
-            </div>
-            <div class="artifact-item">
-              <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
-              Implement ShareButton.tsx component
-            </div>
-            <div class="artifact-item">
-              <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
-              Integrate into HeroSection.tsx
-            </div>
-            <div class="artifact-item">
-              <div class="pending-box"></div>
-              Run dev server and take screenshot
-            </div>
-            <div class="artifact-item">
-              <div class="pending-box"></div>
-              Validate layout in browser
-            </div>
-          </div>
+  <!-- ─── FEATURES ─── -->
+  <section id="features" class="py-24 px-6 bg-slate-950/30">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-2xl">
+          <h2 class="text-brand-neon font-mono text-xs tracking-[0.3em] uppercase mb-4">Elite Capabilities</h2>
+          <h3 class="text-4xl md:text-5xl font-heading font-bold text-white leading-tight">Beyond Simple <br> Autocomplete.</h3>
         </div>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div class="feat-card">
-            <div class="feat-title" style="margin-bottom:8px">📸 Screenshots</div>
-            <p class="feat-desc">Agents capture before/after screenshots automatically. Leave feedback directly on the image.</p>
+        <p class="text-slate-400 font-light max-w-sm mb-2">Designed for elite engineers who manage agents across the entire stack.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="glass p-10 rounded-3xl group hover:border-brand-neon/30 transition-all duration-500">
+          <div class="w-16 h-16 rounded-2xl bg-brand-neon/10 flex items-center justify-center mb-8 group-hover:bg-brand-neon group-hover:text-brand-black transition-all">
+            <i data-lucide="monitor" class="w-8 h-8"></i>
           </div>
-          <div class="feat-card">
-            <div class="feat-title" style="margin-bottom:8px">🎥 Browser Recordings</div>
-            <p class="feat-desc">Full video walkthroughs of completed features — prove it works without manual testing.</p>
+          <h4 class="text-2xl font-heading font-bold text-white mb-4">Manager Surface</h4>
+          <p class="text-slate-400 leading-relaxed font-light">The central HUD where you command parallel agents across the terminal, editor, and browser simultaneously.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass p-10 rounded-3xl group hover:border-brand-glow/30 transition-all duration-500">
+          <div class="w-16 h-16 rounded-2xl bg-brand-glow/10 flex items-center justify-center mb-8 group-hover:bg-brand-glow group-hover:text-brand-black transition-all">
+            <i data-lucide="file-code" class="w-8 h-8"></i>
           </div>
-          <div class="feat-card">
-            <div class="feat-title" style="margin-bottom:8px">📝 Inline Annotations</div>
-            <p class="feat-desc">Comment on code walkthroughs like a Google Doc. Agent incorporates feedback without stopping.</p>
+          <h4 class="text-2xl font-heading font-bold text-white mb-4">Artifacts System</h4>
+          <p class="text-slate-400 leading-relaxed font-light">Review tangible deliverables (plans, recordings, screenshots) instead of raw tool call logs. Trust, but verify.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass p-10 rounded-3xl group hover:border-brand-accent/30 transition-all duration-500">
+          <div class="w-16 h-16 rounded-2xl bg-brand-accent/10 flex items-center justify-center mb-8 group-hover:bg-brand-accent group-hover:text-brand-black transition-all">
+            <i data-lucide="database" class="w-8 h-8"></i>
           </div>
+          <h4 class="text-2xl font-heading font-bold text-white mb-4">Shared Knowledge</h4>
+          <p class="text-slate-400 leading-relaxed font-light">Agents learn from your project history, architectural decisions, and preferred coding patterns 24/7.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="s">
-    <div class="container">
-      <div class="s-head fade">
-        <div class="eyebrow">Features</div>
-        <h2 class="s-title">Cross-Surface Agent Capabilities</h2>
+  <!-- ─── WORKFLOWS ─── -->
+  <section id="workflows" class="py-24 px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col items-center text-center mb-20">
+        <h2 class="text-brand-neon font-mono text-xs tracking-[0.3em] uppercase mb-4">Tactical Execution</h2>
+        <h3 class="text-4xl md:text-5xl font-heading font-bold text-white mb-6">Strategic Workflows</h3>
+        <p class="text-slate-400 max-w-xl">Standardized playbooks for the most common agentic missions.</p>
       </div>
-      <div class="feat-grid fade">
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-          <div class="feat-title">Cross-Surface Agents</div>
-          <p class="feat-desc">One agent modifies code, runs terminal commands, and validates in the browser — all without switching context.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div class="feat-title">Parallel Agent Teams</div>
-          <p class="feat-desc">Manager Surface: spawn 3 agents simultaneously on different tasks. Monitor all from one central view.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div class="feat-title">Knowledge Base</div>
-          <p class="feat-desc">Agents save useful code snippets, patterns, and decisions to improve future tasks automatically.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <div class="feat-title">Async Execution</div>
-          <p class="feat-desc">Delegate complex tasks and let agents work in the background while you focus on other work.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <div class="feat-title">Trust Architecture</div>
-          <p class="feat-desc">Progressive autonomy controls. Set review policies from manual approval to fully autonomous.</p>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg></div>
-          <div class="feat-title">Multi-Model Support</div>
-          <p class="feat-desc">Gemini 3 Pro, Gemini 3 Flash, Claude Sonnet 4.5, GPT-OSS — choose per task with generous free limits.</p>
+
+      <div class="space-y-12">
+        <!-- Workflow 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="order-2 lg:order-1 glass p-8 rounded-3xl max-w-xl">
+            <div class="font-mono text-sm space-y-4">
+              <div class="flex items-center gap-3 text-brand-neon">
+                <span class="w-6 h-6 rounded-full border border-brand-neon flex items-center justify-center text-[10px]">1</span>
+                <span>Plan Implementation Plan (Artifact)</span>
+              </div>
+              <div class="flex items-center gap-3 text-white">
+                <span class="w-6 h-6 rounded-full border border-white flex items-center justify-center text-[10px]">2</span>
+                <span>Code Generation & Refactoring</span>
+              </div>
+              <div class="flex items-center gap-3 text-slate-500">
+                <span class="w-6 h-6 rounded-full border border-slate-500 flex items-center justify-center text-[10px]">3</span>
+                <span>Browser Verification (Lighthouse/Playwright)</span>
+              </div>
+              <div class="flex items-center gap-3 text-slate-500">
+                <span class="w-6 h-6 rounded-full border border-slate-500 flex items-center justify-center text-[10px]">4</span>
+                <span>Final Walkthrough Generation</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2">
+            <h4 class="text-3xl font-heading font-bold text-white mb-4 italic">Frontend Agentic Loop</h4>
+            <p class="text-slate-400 text-lg font-light mb-8">Agent writes code, handles state, runs dev, opens the browser, and iterates until the UI matches your exact requirements.</p>
+            <div class="flex items-center gap-4 text-xs font-mono uppercase tracking-widest text-slate-500 font-bold">
+              <span>Browser-in-the-loop</span>
+              <div class="w-1.5 h-1.5 rounded-full bg-slate-700"></div>
+              <span>Artifact Evidence</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MODELS -->
-  <section class="s" style="background:var(--surface)">
-    <div class="container">
-      <div class="s-head fade">
-        <div class="eyebrow">Model Support</div>
-        <h2 class="s-title">Bring Your Preferred AI</h2>
+  <!-- ─── SETUP ─── -->
+  <section id="setup" class="py-24 px-6 bg-brand-neon/5 relative">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-neon/30 to-transparent"></div>
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-heading font-bold text-white mb-8">Get Your Assistant <br> Running in <span class="text-brand-neon">Seconds.</span></h2>
+      
+      <div class="glass p-1 rounded-2xl mb-12 flex items-center">
+        <div class="flex-1 text-left font-mono py-4 px-6 text-brand-neon overflow-x-auto whitespace-nowrap scrollbar-hide">
+          brew install --cask google-antigravity
+        </div>
+        <button class="bg-brand-neon hover:bg-brand-neon/80 text-brand-black px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-2">
+          <i data-lucide="copy" class="w-4 h-4"></i> Copy
+        </button>
       </div>
-      <div class="models-grid fade">
-        <div class="model-card">
-          <div class="model-name">Gemini 3 Pro</div>
-          <div class="model-maker">Google DeepMind</div>
-          <div class="model-tags"><span class="model-tag">Default</span><span class="model-tag">Free</span><span class="model-tag">Fast</span></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+        <div class="glass p-6 rounded-2xl flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400">
+            <i data-lucide="check" class="w-5 h-5"></i>
+          </div>
+          <span class="text-sm font-medium text-slate-300">Production Ready 2026</span>
         </div>
-        <div class="model-card">
-          <div class="model-name">Gemini 3 Flash</div>
-          <div class="model-maker">Google DeepMind</div>
-          <div class="model-tags"><span class="model-tag">Fastest</span><span class="model-tag">Free</span></div>
-        </div>
-        <div class="model-card">
-          <div class="model-name">Claude Sonnet 4.5</div>
-          <div class="model-maker">Anthropic</div>
-          <div class="model-tags"><span class="model-tag">Best Coding</span><span class="model-tag">Paid</span></div>
-        </div>
-        <div class="model-card">
-          <div class="model-name">GPT-OSS</div>
-          <div class="model-maker">OpenAI</div>
-          <div class="model-tags"><span class="model-tag">Alternative</span><span class="model-tag">Paid</span></div>
+        <div class="glass p-6 rounded-2xl flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-brand-neon/20 flex items-center justify-center text-brand-neon">
+            <i data-lucide="shield" class="w-5 h-5"></i>
+          </div>
+          <span class="text-sm font-medium text-slate-300">Gitleaks Standards</span>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="foot-brand" style="color:var(--accent)">Google Antigravity</div>
-    <p class="foot-desc">The next-gen agentic IDE — Editor View + Manager Surface + Artifacts. Free for individuals.</p>
-    <nav class="foot-links">
-      <a href="https://antigravity.google" target="_blank" rel="noopener noreferrer">Website</a>
-      <a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer">Download</a>
-      <a href="./README.md">README</a>
-      <a href="https://ai-coding-portfolio.vercel.app">All Tools</a>
-    </nav>
-    <p class="foot-copy">AI-ASSISTANT-ANTIGRAVITY · Showcase by mk-knight23 · March 2026</p>
+  <!-- ─── FOOTER ─── -->
+  <footer class="py-20 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+      <div class="space-y-4 text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-2">
+          <i data-lucide="zap" class="text-brand-neon w-5 h-5"></i>
+          <span class="font-heading font-bold text-xl tracking-tighter text-white uppercase">ANTIGRAVITY</span>
+        </div>
+        <p class="text-slate-500 text-sm max-w-xs font-light">Advanced autonomous orchestrator for modern software engineering.</p>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="flex gap-8 mb-8">
+          <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+          <a href="https://github.com/mk-knight23" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
+          <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+        </div>
+        <p class="text-[10px] uppercase tracking-[0.4em] font-heading font-bold text-slate-500">
+          Designed by <span class="text-brand-neon">Kazi Musharraf</span>
+        </p>
+      </div>
+
+      <div class="text-slate-500 text-sm font-mono text-center md:text-right">
+        &copy; 2026 AI Assistant Ecosystem. <br>
+        All rights reserved.
+      </div>
+    </div>
   </footer>
 
   <script>
-    const sb=document.getElementById('sb');
-    window.addEventListener('scroll',()=>{sb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%'},{passive:true});
-    const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*50);obs.unobserve(e.target)}}),{threshold:.1});
-    document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Fade in effect on scroll for glass cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.glass').forEach(el => {
+      el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
