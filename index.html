@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ANTIGRAVITY | Kazi Musharraf</title>
-  <meta name="description" content="AI-Native Command Surface by Kazi Musharraf. High-performance agentic coding with browser-in-the-loop automation.">
+  <meta name="description" content="AI-ASSISTANT-ANTIGRAVITY: The energetic command deck for agentic code management. Developed by Kazi Musharraf.">
   
-  <!-- UI UX Pro Max: Font & Style CDN -->
+  <!-- UI UX Pro Max: Bright Standard CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -22,22 +21,12 @@
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            brand: {
-              black: '#020617',
-              surface: '#0F172A',
-              neon: '#22D3EE',
-              glow: '#818CF8',
-              accent: '#C084FC',
-            }
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
+            sunburst: {
+              primary: '#FACC15',
+              secondary: '#FEF08A',
+              light: '#FEF9C3',
+              muted: '#854D0E',
+              bg: '#FFFFFF',
             }
           }
         }
@@ -46,194 +35,153 @@
   </script>
 
   <style>
-    .glass {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    body { background-color: #FFFFFF; color: #1E293B; overflow-x: hidden; }
+    .glass-mural {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
-    .neo-glow {
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
+    .yellow-gradient {
+      background: linear-gradient(135deg, #FACC15 0%, #FEF08A 100%);
     }
-    .neon-text {
-      text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+    .mural-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.2;
+      animation: float 20s infinite ease-in-out;
     }
-    .mesh-gradient {
-      background: radial-gradient(at 0% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 0%, rgba(192, 132, 252, 0.15) 0px, transparent 50%),
-                  radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.1) 0px, transparent 50%);
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
     }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #020617; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FFFFFF; }
+    ::-webkit-scrollbar-thumb { background: #FACC15; border-radius: 10px; }
   </style>
 </head>
 
-<body class="bg-brand-black text-slate-200 font-sans selection:bg-brand-neon selection:text-black">
+<body class="font-sans selection:bg-sunburst-primary selection:text-white">
 
-  <!-- ─── BACKGROUND ─── -->
-  <div class="fixed inset-0 -z-10 mesh-gradient"></div>
+  <!-- ─── MURAL BLOBS ─── -->
+  <div class="mural-blob w-[500px] h-[500px] bg-yellow-400 top-[-10%] right-[-10%]"></div>
+  <div class="mural-blob w-[400px] h-[400px] bg-amber-200 bottom-[-10%] left-[-10%]"></div>
 
-  <!-- ─── HEADER ─── -->
-  <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-50 transition-all duration-300">
-    <div class="glass px-6 py-4 rounded-3xl flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-neon to-brand-accent flex items-center justify-center neo-glow">
-          <i data-lucide="zap" class="text-brand-black w-6 h-6"></i>
-        </div>
-        <span class="font-heading font-bold text-xl tracking-tight hidden sm:block">ANTIGRAVITY</span>
+  <!-- ─── NAV ─── -->
+  <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl z-50 glass-mural rounded-3xl px-8 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl yellow-gradient flex items-center justify-center shadow-lg shadow-yellow-400/20">
+        <i data-lucide="zap" class="text-white w-6 h-6"></i>
       </div>
-      
-      <div class="flex items-center gap-6 text-sm font-medium text-slate-400">
-        <a href="#features" class="hover:text-brand-neon transition-colors">Features</a>
-        <a href="#workflows" class="hover:text-brand-neon transition-colors">Workflows</a>
-        <a href="#setup" class="hover:text-brand-neon transition-colors">Setup</a>
-        <div class="w-[1px] h-4 bg-white/10 mx-2"></div>
-        <span class="text-brand-neon/80 font-mono text-[10px] tracking-widest border border-brand-neon/30 px-2 py-1 rounded">V2.0 ALPHA</span>
-      </div>
+      <span class="font-heading font-black text-2xl tracking-tighter text-slate-900 uppercase">Antigravity</span>
+    </div>
 
-      <div class="flex items-center gap-4">
-        <span class="text-[11px] font-heading font-medium tracking-[0.2em] text-slate-500 uppercase hidden lg:block">By Kazi Musharraf</span>
-        <button class="bg-brand-neon text-brand-black px-5 py-2 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(34,211,238,0.4)]">
-          Deploy Agent
-        </button>
-      </div>
+    <div class="hidden md:flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+      <a href="#logic" class="hover:text-amber-500 transition-all">Logic</a>
+      <a href="#workflow" class="hover:text-amber-500 transition-all">Workflows</a>
+      <a href="#install" class="hover:text-amber-500 transition-all">Setup</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest hidden sm:block">Kazi Musharraf</span>
+      <a href="https://github.com/mk-knight23/AI-ASSISTANT-ANTIGRAVITY" target="_blank" class="w-10 h-10 glass-mural rounded-xl flex items-center justify-center hover:bg-yellow-50 transition-all">
+        <i data-lucide="github" class="w-5 h-5 text-slate-900"></i>
+      </a>
     </div>
   </nav>
 
   <!-- ─── HERO ─── -->
-  <header class="pt-44 pb-20 px-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-pulse-slow">
-        <span class="w-2 h-2 rounded-full bg-brand-neon animate-ping"></span>
-        <span class="text-xs font-mono font-medium tracking-wider text-brand-neon">LIFTOFF ACHIEVED | AGENTIC RAG 2026</span>
+  <section class="pt-64 pb-32 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col items-center text-center">
+      <div class="bg-yellow-100 text-yellow-800 px-4 py-1.5 rounded-full font-bold text-[10px] uppercase tracking-[0.3em] mb-12 shadow-sm border border-yellow-200">
+        Active Command Core | 2026.04
       </div>
       
-      <h1 class="text-6xl md:text-8xl font-heading font-bold mb-6 tracking-tighter text-white">
-        Experience <br> <span class="bg-gradient-to-r from-brand-neon via-brand-glow to-brand-accent bg-clip-text text-transparent italic">Liftoff.</span>
+      <h1 class="text-6xl md:text-9xl font-heading font-black text-slate-900 leading-[0.85] tracking-tighter uppercase mb-12">
+        Zero Latency <br> <span class="text-yellow-400 italic">Command.</span>
       </h1>
       
-      <p class="max-w-2xl text-slate-400 text-lg md:text-xl font-light mb-12 leading-relaxed">
-        The terminal is now an autonomous software factory. Built by <span class="text-white font-medium">Kazi Musharraf</span>, Antigravity orchestrates parallel agents across the terminal, editor, and browser.
+      <p class="max-w-3xl text-xl md:text-2xl text-slate-500 font-light leading-relaxed mb-20 italic">
+        The most energetic command deck for autonomous agent management. A high-fidelity whitespace experience crafted for high-velocity engineering by <span class="text-slate-900 font-bold border-b-2 border-yellow-400">Kazi Musharraf</span>.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-6">
-        <a href="#setup" class="bg-white text-brand-black px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all">
-          Get Started
+      <div class="flex flex-wrap items-center justify-center gap-8 mb-32">
+        <a href="#install" class="yellow-gradient text-white px-12 py-6 rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-xl shadow-yellow-400/30 uppercase italic">
+          Launch Assistant
         </a>
-        <a href="https://github.com/mk-knight23/AI-ASSISTANT-ANTIGRAVITY" target="_blank" class="glass px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3 hover:bg-white/10 transition-all border border-white/5">
-          <i data-lucide="github" class="w-5 h-5"></i> GitHub Repo
+        <a href="#logic" class="text-slate-900 font-black text-xl flex items-center gap-4 group italic px-6">
+          See Logic <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
         </a>
-      </div>
-
-      <div class="mt-20 w-full max-w-6xl glass rounded-3xl p-4 md:p-8 animate-float relative">
-        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-neon/20 blur-[80px]"></div>
-        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent/20 blur-[80px]"></div>
-        
-        <div class="flex items-center gap-2 mb-6 border-b border-white/5 pb-4">
-          <div class="flex gap-1.5">
-            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-          </div>
-          <span class="text-xs font-mono text-slate-500 ml-4 italic">manager-surface.sh — agent-loop</span>
-        </div>
-        
-        <div class="text-left font-mono text-sm space-y-3">
-          <p class="text-slate-500">[14:32:01] <span class="text-brand-neon">Orchestrator:</span> Initiating multi-surface task...</p>
-          <p class="text-slate-400">→ Terminal: Starting `npm run dev` at localhost:3000</p>
-          <p class="text-slate-400">→ Browser: Navigating to page 'Dashboard'</p>
-          <p class="text-slate-400">→ Editor: Inserting new component 'AuthGate.tsx'</p>
-          <p class="text-white font-bold animate-pulse">▐ Agent is thinking...</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ─── FEATURES ─── -->
-  <section id="features" class="py-24 px-6 bg-slate-950/30">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div class="max-w-2xl">
-          <h2 class="text-brand-neon font-mono text-xs tracking-[0.3em] uppercase mb-4">Elite Capabilities</h2>
-          <h3 class="text-4xl md:text-5xl font-heading font-bold text-white leading-tight">Beyond Simple <br> Autocomplete.</h3>
-        </div>
-        <p class="text-slate-400 font-light max-w-sm mb-2">Designed for elite engineers who manage agents across the entire stack.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Feature 1 -->
-        <div class="glass p-10 rounded-3xl group hover:border-brand-neon/30 transition-all duration-500">
-          <div class="w-16 h-16 rounded-2xl bg-brand-neon/10 flex items-center justify-center mb-8 group-hover:bg-brand-neon group-hover:text-brand-black transition-all">
-            <i data-lucide="monitor" class="w-8 h-8"></i>
-          </div>
-          <h4 class="text-2xl font-heading font-bold text-white mb-4">Manager Surface</h4>
-          <p class="text-slate-400 leading-relaxed font-light">The central HUD where you command parallel agents across the terminal, editor, and browser simultaneously.</p>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="glass p-10 rounded-3xl group hover:border-brand-glow/30 transition-all duration-500">
-          <div class="w-16 h-16 rounded-2xl bg-brand-glow/10 flex items-center justify-center mb-8 group-hover:bg-brand-glow group-hover:text-brand-black transition-all">
-            <i data-lucide="file-code" class="w-8 h-8"></i>
-          </div>
-          <h4 class="text-2xl font-heading font-bold text-white mb-4">Artifacts System</h4>
-          <p class="text-slate-400 leading-relaxed font-light">Review tangible deliverables (plans, recordings, screenshots) instead of raw tool call logs. Trust, but verify.</p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="glass p-10 rounded-3xl group hover:border-brand-accent/30 transition-all duration-500">
-          <div class="w-16 h-16 rounded-2xl bg-brand-accent/10 flex items-center justify-center mb-8 group-hover:bg-brand-accent group-hover:text-brand-black transition-all">
-            <i data-lucide="database" class="w-8 h-8"></i>
-          </div>
-          <h4 class="text-2xl font-heading font-bold text-white mb-4">Shared Knowledge</h4>
-          <p class="text-slate-400 leading-relaxed font-light">Agents learn from your project history, architectural decisions, and preferred coding patterns 24/7.</p>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── WORKFLOWS ─── -->
-  <section id="workflows" class="py-24 px-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col items-center text-center mb-20">
-        <h2 class="text-brand-neon font-mono text-xs tracking-[0.3em] uppercase mb-4">Tactical Execution</h2>
-        <h3 class="text-4xl md:text-5xl font-heading font-bold text-white mb-6">Strategic Workflows</h3>
-        <p class="text-slate-400 max-w-xl">Standardized playbooks for the most common agentic missions.</p>
+  <!-- ─── MURAL BENTO ─── -->
+  <section id="logic" class="py-32 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
+      <!-- Big Card -->
+      <div class="md:col-span-8 glass-mural p-12 rounded-[3.5rem] border-t-8 border-yellow-400 hover:shadow-2xl transition-all">
+        <div class="w-16 h-16 rounded-3xl bg-yellow-50 flex items-center justify-center mb-10">
+          <i data-lucide="layout-grid" class="text-yellow-500 w-8 h-8"></i>
+        </div>
+        <h4 class="text-4xl font-heading font-black text-slate-900 mb-6 uppercase italic">Multi-Agent Deck</h4>
+        <p class="text-lg text-slate-500 font-light leading-relaxed max-w-xl italic mb-10">
+          Orchestrate up to 10 parallel agents across the browser, terminal, and IDE. Real-time parity enforced via the Antigravity synchronization protocol.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 bg-yellow-50 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-yellow-700">DeepSeek_V3</div>
+          <div class="p-4 bg-yellow-50 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-yellow-700">Claude_4.6</div>
+          <div class="p-4 bg-yellow-50 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-yellow-700">Gemini_Ultra</div>
+          <div class="p-4 bg-yellow-50 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-yellow-700">Qwen_Max</div>
+        </div>
       </div>
 
-      <div class="space-y-12">
-        <!-- Workflow 1 -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1 glass p-8 rounded-3xl max-w-xl">
-            <div class="font-mono text-sm space-y-4">
-              <div class="flex items-center gap-3 text-brand-neon">
-                <span class="w-6 h-6 rounded-full border border-brand-neon flex items-center justify-center text-[10px]">1</span>
-                <span>Plan Implementation Plan (Artifact)</span>
-              </div>
-              <div class="flex items-center gap-3 text-white">
-                <span class="w-6 h-6 rounded-full border border-white flex items-center justify-center text-[10px]">2</span>
-                <span>Code Generation & Refactoring</span>
-              </div>
-              <div class="flex items-center gap-3 text-slate-500">
-                <span class="w-6 h-6 rounded-full border border-slate-500 flex items-center justify-center text-[10px]">3</span>
-                <span>Browser Verification (Lighthouse/Playwright)</span>
-              </div>
-              <div class="flex items-center gap-3 text-slate-500">
-                <span class="w-6 h-6 rounded-full border border-slate-500 flex items-center justify-center text-[10px]">4</span>
-                <span>Final Walkthrough Generation</span>
-              </div>
+      <!-- Small Vertical -->
+      <div class="md:col-span-4 glass-mural p-10 rounded-[3.5rem] flex flex-col justify-between hover:shadow-2xl transition-all group">
+        <div>
+          <i data-lucide="shield-check" class="text-yellow-500 w-12 h-12 mb-8 group-hover:scale-125 transition-transform"></i>
+          <h4 class="text-2xl font-heading font-black text-slate-900 mb-4 uppercase">Secure Guard</h4>
+          <p class="text-sm text-slate-400 italic font-medium">Automatic PII scrubbing & secret detection on all agentic streams.</p>
+        </div>
+        <div class="mt-12 p-6 bg-slate-900 rounded-3xl text-white font-mono text-[10px]">
+          <span class="text-yellow-400">SECRET_DETECTED:</span> [REDACTED]
+        </div>
+      </div>
+
+      <!-- Wide Bottom -->
+      <div id="workflow" class="md:col-span-12 glass-mural p-12 rounded-[3.5rem] flex flex-col lg:flex-row items-center gap-16 mt-6 hover:shadow-2xl transition-all">
+        <div class="lg:w-1/2">
+          <h3 class="text-4xl font-heading font-black text-slate-900 mb-6 uppercase italic">Hybrid Tier Workflow</h3>
+          <p class="text-slate-500 font-light leading-relaxed italic mb-8">
+            Plan with the elite agents, execute with the mechanical engines. Antigravity bridges the gaps in your CI/CD pipeline.
+          </p>
+          <div class="flex gap-6">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+              <span class="text-[10px] font-black uppercase text-slate-400">Planning</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+              <span class="text-[10px] font-black uppercase text-slate-400">Execution</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+              <span class="text-[10px] font-black uppercase text-slate-400">Audit</span>
             </div>
           </div>
-          <div class="order-1 lg:order-2">
-            <h4 class="text-3xl font-heading font-bold text-white mb-4 italic">Frontend Agentic Loop</h4>
-            <p class="text-slate-400 text-lg font-light mb-8">Agent writes code, handles state, runs dev, opens the browser, and iterates until the UI matches your exact requirements.</p>
-            <div class="flex items-center gap-4 text-xs font-mono uppercase tracking-widest text-slate-500 font-bold">
-              <span>Browser-in-the-loop</span>
-              <div class="w-1.5 h-1.5 rounded-full bg-slate-700"></div>
-              <span>Artifact Evidence</span>
-            </div>
+        </div>
+        <div class="lg:w-1/2 grid grid-cols-2 gap-4 w-full">
+          <div class="p-8 border border-slate-100 rounded-3xl hover:bg-yellow-50 transition-all text-center">
+            <i data-lucide="github" class="w-6 h-6 mx-auto mb-4 text-slate-400"></i>
+            <span class="text-xs font-bold text-slate-900 uppercase">GH_SYNC</span>
+          </div>
+          <div class="p-8 border border-slate-100 rounded-3xl hover:bg-yellow-50 transition-all text-center">
+            <i data-lucide="cloud" class="w-6 h-6 mx-auto mb-4 text-slate-400"></i>
+            <span class="text-xs font-bold text-slate-900 uppercase">VERCEL_POD</span>
           </div>
         </div>
       </div>
@@ -241,82 +189,69 @@
   </section>
 
   <!-- ─── SETUP ─── -->
-  <section id="setup" class="py-24 px-6 bg-brand-neon/5 relative">
-    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-neon/30 to-transparent"></div>
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl md:text-5xl font-heading font-bold text-white mb-8">Get Your Assistant <br> Running in <span class="text-brand-neon">Seconds.</span></h2>
+  <section id="install" class="py-32 px-6">
+    <div class="max-w-4xl mx-auto flex flex-col items-center">
+      <h3 class="text-5xl md:text-7xl font-heading font-black text-slate-900 mb-16 tracking-tighter uppercase italic">Ready to <span class="text-yellow-400">Lift Off?</span></h3>
       
-      <div class="glass p-1 rounded-2xl mb-12 flex items-center">
-        <div class="flex-1 text-left font-mono py-4 px-6 text-brand-neon overflow-x-auto whitespace-nowrap scrollbar-hide">
-          brew install --cask google-antigravity
+      <div class="w-full glass-mural p-4 rounded-[2.5rem] mb-16 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden group">
+        <div class="absolute inset-0 yellow-gradient opacity-0 group-hover:opacity-10 transition-all"></div>
+        <div class="flex-1 font-mono text-xl py-6 px-10 text-slate-900 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          npx antigravity-deck@latest init
         </div>
-        <button class="bg-brand-neon hover:bg-brand-neon/80 text-brand-black px-6 py-4 rounded-xl font-bold transition-all flex items-center gap-2">
-          <i data-lucide="copy" class="w-4 h-4"></i> Copy
+        <button class="yellow-gradient text-white px-12 py-6 rounded-3xl font-black text-xl shadow-lg transition-all active:scale-95 uppercase italic">
+          Initialize
         </button>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-        <div class="glass p-6 rounded-2xl flex items-center gap-4">
-          <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400">
-            <i data-lucide="check" class="w-5 h-5"></i>
-          </div>
-          <span class="text-sm font-medium text-slate-300">Production Ready 2026</span>
-        </div>
-        <div class="glass p-6 rounded-2xl flex items-center gap-4">
-          <div class="w-10 h-10 rounded-xl bg-brand-neon/20 flex items-center justify-center text-brand-neon">
-            <i data-lucide="shield" class="w-5 h-5"></i>
-          </div>
-          <span class="text-sm font-medium text-slate-300">Gitleaks Standards</span>
-        </div>
-      </div>
+      <p class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-12">System Requirement: Node.js 24+</p>
     </div>
   </section>
 
   <!-- ─── FOOTER ─── -->
-  <footer class="py-20 px-6 border-t border-white/5">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-      <div class="space-y-4 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-2">
-          <i data-lucide="zap" class="text-brand-neon w-5 h-5"></i>
-          <span class="font-heading font-bold text-xl tracking-tighter text-white uppercase">ANTIGRAVITY</span>
+  <footer class="py-24 px-6 border-t border-slate-100 bg-white">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+          <div class="w-10 h-10 rounded-xl yellow-gradient flex items-center justify-center shadow-lg"><i data-lucide="zap" class="w-6 h-6 text-white"></i></div>
+          <span class="font-heading font-black text-2xl text-slate-900 uppercase tracking-tighter">ANTIGRAVITY</span>
         </div>
-        <p class="text-slate-500 text-sm max-w-xs font-light">Advanced autonomous orchestrator for modern software engineering.</p>
+        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.4em] mb-4">Command Core Evolution</p>
+        <p class="text-xs text-slate-500 font-light max-w-xs italic italic">A high-fidelity agentic ecosystem showcase. Crafted for precision and whitespace excellence.</p>
       </div>
 
       <div class="flex flex-col items-center">
-        <div class="flex gap-8 mb-8">
-          <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="twitter" class="w-6 h-6"></i></a>
-          <a href="https://github.com/mk-knight23" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="github" class="w-6 h-6"></i></a>
-          <a href="#" class="text-slate-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+        <div class="flex gap-12 mb-10">
+          <a href="#" class="text-slate-300 hover:text-yellow-400 transition-all"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+          <a href="https://github.com/mk-knight23" class="text-slate-300 hover:text-yellow-400 transition-all"><i data-lucide="github" class="w-6 h-6"></i></a>
+          <a href="#" class="text-slate-300 hover:text-yellow-400 transition-all"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
         </div>
-        <p class="text-[10px] uppercase tracking-[0.4em] font-heading font-bold text-slate-500">
-          Designed by <span class="text-brand-neon">Kazi Musharraf</span>
-        </p>
+        <div class="px-6 py-2 glass-mural rounded-full">
+            <p class="text-[11px] uppercase tracking-[0.6em] font-heading font-black text-slate-900 leading-none">
+              DESIGN BY <span class="text-yellow-500 italic">KAZI MUSHARRAF</span>
+            </p>
+        </div>
       </div>
 
-      <div class="text-slate-500 text-sm font-mono text-center md:text-right">
-        &copy; 2026 AI Assistant Ecosystem. <br>
-        All rights reserved.
+      <div class="text-xs text-slate-400 font-light italic text-center md:text-right">
+        "Physics is just a suggestion." <br>
+        &copy; 2026 Antiview Protocols.
       </div>
     </div>
   </footer>
 
   <script>
-    // Initialize Lucide icons
     lucide.createIcons();
 
-    // Fade in effect on scroll for glass cards
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('opacity-100', 'translate-y-0');
-          entry.target.classList.remove('opacity-0', 'translate-y-10');
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.glass').forEach(el => {
-      el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+    document.querySelectorAll('.glass-mural, h1, h3').forEach(el => {
+      el.classList.add('transition-all', 'duration-[1200ms]', 'opacity-0', 'translate-y-12');
       observer.observe(el);
     });
   </script>
